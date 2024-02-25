@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     if (data.status == "ok") {
       setAdm(data.adm);
       localStorage.setItem("admCodigo", data.adm.codigo);
+      localStorage.setItem("admNome", data.adm.nome);
       return true;
     }
     return false;

@@ -1,0 +1,54 @@
+@import "../variables";
+@import "../mixins";
+
+.sidebar {
+  width: 275px;
+  min-height: 100vh;
+  background-color: $brown_color;
+  border-right: 5px solid $green_color;
+  padding: 2rem;
+  color: white;
+  @include flex(column, start, space-between);
+
+  &-title {
+    font-family: $OleoSwashCaps;
+  }
+
+  &-buttons {
+    width: 100%;
+    @include flex(column, start, start);
+    gap: 4rem;
+
+    &-wrapper {
+      width: 100%;
+      @include flex(column, start, start);
+      gap: 1rem;
+      font-family: $InterFontFamily;
+
+      button {
+        width: 100%;
+        font-size: 20px;
+        text-align: left;
+        border: none;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+          border-color: white;
+        }
+      }
+    }
+  }
+
+  .btnLogout {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    background-color: $red_color;
+    cursor: pointer;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,109 @@
+@import "../../variables";
+@import "../../mixins";
+
+.cadastrar-filme-section {
+  width: 100%;
+  padding: 3rem;
+  height: 100%;
+  @include flex(row, center, center);
+
+  .cadastrar-filme-wrapper {
+    width: 100%;
+    @include flex(row, center, space-evenly);
+
+    .filme_poster {
+      width: 375px;
+      height: 475px;
+      background-color: red;
+    }
+
+    .filme_info {
+      max-width: 370px;
+      //   width: fit-content;
+      @include flex(column, start, start);
+      gap: 2rem;
+
+      .inputGroup {
+        width: 100%;
+        @include flex(column, start, start);
+        gap: 0.5rem;
+
+        p {
+          font-size: 14px;
+          font-family: $OleoScript;
+          color: $brown_color;
+        }
+
+        textarea,
+        input {
+          width: 100%;
+          padding: 0.5rem;
+          outline: none;
+          background-color: white;
+          border: 2px solid $brown_color;
+        }
+
+        textarea {
+          height: 200px;
+          resize: none;
+        }
+      }
+
+      .DiffInputGroup {
+        @include flex(row, center, start);
+        gap: 1rem;
+      }
+
+      .categorias {
+        width: 100%;
+        @include flex(row, center, start);
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .tipo_midia {
+        @include flex(row, center, start);
+        gap: 2rem;
+      }
+
+      .chklabel {
+        @include flex(row, center, start);
+        gap: 0.25rem;
+        font-family: $OleoScript;
+        color: $brown_color;
+        user-select: none;
+
+        input {
+          border: 2px solid $brown_color;
+        }
+      }
+
+      .btnWrapper {
+        width: 100%;
+        @include flex(row, center, space-between);
+
+        button {
+          padding: 0.5rem 3rem;
+          border: none;
+          color: white;
+          cursor: pointer;
+
+          &:nth-child(1) {
+            background-color: $green_color;
+          }
+
+          &:nth-child(2) {
+            background-color: $red_color;
+          }
+        }
+      }
+    }
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

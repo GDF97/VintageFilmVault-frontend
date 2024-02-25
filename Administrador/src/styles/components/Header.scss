@@ -1,0 +1,14 @@
+@import "../mixins";
+@import "../variables";
+
+.header {
+  width: 100%;
+  padding: 1rem 3rem;
+  @include flex(row, center, space-between);
+
+  font-family: $OleoScript;
+
+  &-date {
+    text-align: center;
+  }
+}

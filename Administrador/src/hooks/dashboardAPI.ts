@@ -29,5 +29,11 @@ export const useDashboardAPI = () => {
     },
     consultarClientes: async () => {},
     aprovarClientes: async () => {},
+    deletarFilmes: async (id_filme: number) => {
+      const response = await api.delete(
+        `/deletar-filme.php?id_filme=${id_filme}`
+      );
+      return response.data;
+    },
   };
 };

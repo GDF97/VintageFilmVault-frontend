@@ -12,7 +12,12 @@ const ConsultarFilmes = () => {
   const fetchFilmes = async () => {
     try {
       const data = await api.consultarFilmes();
-      setFilmes(data);
+
+      if (!data.message) {
+        setFilmes(data);
+      } else {
+        setFilmes(null);
+      }
     } catch (error) {
       console.error("Erro ao consultar filmes:", error);
     }
@@ -23,7 +28,7 @@ const ConsultarFilmes = () => {
   }, []);
 
   useEffect(() => {
-    console.log(filmes);
+    fetchFilmes();
   }, [filmes]);
 
   return (

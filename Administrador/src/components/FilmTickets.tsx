@@ -1,8 +1,6 @@
 import { FilmType } from "../types/FilmType";
 import "../styles/components/FilmTickets.scss";
-/*
-
-*/
+import { useDashboardAPI } from "../hooks/dashboardAPI";
 
 const FilmTickets = ({
   id_filme,
@@ -10,6 +8,16 @@ const FilmTickets = ({
   tipo_midia,
   vl_filme,
 }: FilmType) => {
+  const api = useDashboardAPI();
+  const fnDeleteFilm = async (id: number) => {
+    try {
+      const data = await api.deletarFilmes(id);
+      console.log(data);
+    } catch (erro) {
+      console.error(erro);
+    }
+  };
+
   return (
     <div className="filme">
       <div className="filme-body">
@@ -29,8 +37,13 @@ const FilmTickets = ({
         </div>
       </div>
       <div className="filme-buttons">
-        <button value={id_filme ? id_filme : 0}>Excluir</button>
         <button value={id_filme ? id_filme : 0}>Editar</button>
+        <button
+          value={id_filme ? id_filme : 0}
+          onClick={(e) => fnDeleteFilm(Number(e.currentTarget.value))}
+        >
+          Excluir
+        </button>
       </div>
     </div>
   );

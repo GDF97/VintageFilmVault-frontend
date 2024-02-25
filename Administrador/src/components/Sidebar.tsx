@@ -20,7 +20,7 @@ const Sidebar = () => {
             Cadastrar Filme
           </button>
           <button
-            value={"/dashboard/cadastrar-filme"}
+            value={"/dashboard/consultar-filmes"}
             onClick={(e) => handlePages(e.currentTarget.value)}
           >
             Consultar Filmes

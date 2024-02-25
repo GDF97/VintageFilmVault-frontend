@@ -19,7 +19,10 @@ export const useDashboardAPI = () => {
       });
       return response.data;
     },
-    consultarFilmes: async () => {},
+    consultarFilmes: async () => {
+      const response = await api.get("/selecionar-filmes.php");
+      return response.data;
+    },
     resgatarGeneros: async () => {
       const response = await api.get("/selecionar-categorias.php");
       return response.data;

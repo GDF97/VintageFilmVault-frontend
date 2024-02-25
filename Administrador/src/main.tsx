@@ -8,6 +8,7 @@ import Dashboard from "./routes/Dashboard.tsx";
 import { AuthProvider } from "./contexts/Auth/AuthProvider.tsx";
 import CadastrarFilme from "./routes/[dashboard]/CadastrarFilme.tsx";
 import { RequireAuth } from "./contexts/Auth/RequireAuth.tsx";
+import ConsultarFilmes from "./routes/[dashboard]/ConsultarFilmes.tsx";
 
 const route = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const route = createBrowserRouter([
       {
         path: "/dashboard/cadastrar-filme",
         element: <CadastrarFilme />,
+      },
+      {
+        path: "/dashboard/consultar-filmes",
+        element: <ConsultarFilmes />,
       },
     ],
   },

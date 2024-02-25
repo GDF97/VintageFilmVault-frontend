@@ -5,5 +5,5 @@ export type FilmType = {
   vl_filme?: number;
   desc_filme?: string;
   tipo_midia?: string;
-  categorias?: Array<number>;
+  categorias?: Array<number> | null;
 };

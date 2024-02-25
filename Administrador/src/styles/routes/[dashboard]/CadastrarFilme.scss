@@ -14,7 +14,8 @@
     .filme_poster {
       width: 375px;
       height: 475px;
-      background-color: red;
+      border: 2px solid $brown_color;
+      background-color: #d9d9d9;
     }
 
     .filme_info {

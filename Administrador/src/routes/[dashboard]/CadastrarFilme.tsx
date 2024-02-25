@@ -3,6 +3,7 @@ import "../../styles/routes/[dashboard]/CadastrarFilme.scss";
 import { useDashboardAPI } from "../../hooks/dashboardAPI";
 import { CategoryType } from "../../types/CategoryType";
 import { FilmType } from "../../types/FilmType";
+import { ValidationError, validateFilm } from "../../utils/validateFilm";
 const CadastrarFilme = () => {
   const useAPI = useDashboardAPI();
 
@@ -19,10 +20,10 @@ const CadastrarFilme = () => {
   const [imageName, setImageName] = useState("");
   const [categoriasDisponiveis, setCategoriasDisponiveis] =
     useState<Array<CategoryType> | null>(null);
-
   const [categoriasSelecionadas, setCategoriasSelecionadas] = useState<
     number[]
   >([]);
+  const [erros, setErrors] = useState<ValidationError | null>(null);
 
   const [tpMidia, setTpMidia] = useState("");
   const [midiaArr, setMidiaArr] = useState<string[]>([]);
@@ -33,7 +34,7 @@ const CadastrarFilme = () => {
     vl_filme: 0,
     desc_filme: "",
     tipo_midia: "",
-    categorias: [],
+    categorias: null,
   });
 
   const resgatarGeneros = async () => {
@@ -119,6 +120,15 @@ const CadastrarFilme = () => {
       categorias: filmObj.categorias,
     };
 
+    const validateErrors = validateFilm(novoFilme);
+
+    if (Object.keys(validateErrors).length > 0) {
+      setErrors(validateErrors);
+      return;
+    } else {
+      setErrors(null);
+    }
+
     const data = await useAPI.cadastrarFilme(novoFilme, image, imageName);
     console.log(data);
   };
@@ -127,6 +137,7 @@ const CadastrarFilme = () => {
     setImage("");
     setFilmObj(initialState);
     setMidiaArr([]);
+    setErrors(null);
   };
 
   useEffect(() => {
@@ -159,6 +170,7 @@ const CadastrarFilme = () => {
               onChange={handleInputChanges}
               autoComplete="off"
             />
+            {erros && <small>{erros.nome}</small>}
           </div>
           <div className="DiffInputGroup">
             <div className="inputGroup">
@@ -171,6 +183,7 @@ const CadastrarFilme = () => {
                 value={filmObj.ano_lancamento}
                 onChange={handleInputChanges}
               />
+              {erros && <small>{erros.ano}</small>}
             </div>
             <div className="inputGroup">
               <p>Preço do Filme</p>
@@ -182,6 +195,7 @@ const CadastrarFilme = () => {
                 value={filmObj.vl_filme}
                 onChange={handleInputChanges}
               />
+              {erros && <small>{erros.valor}</small>}
             </div>
           </div>
           <div className="categorias">
@@ -202,6 +216,7 @@ const CadastrarFilme = () => {
                   {categoria.nm_genero}
                 </label>
               ))}
+            {erros && <small>{erros.categorias}</small>}
           </div>
           <div className="inputGroup">
             <p>Descrição</p>
@@ -211,6 +226,7 @@ const CadastrarFilme = () => {
               value={filmObj.desc_filme}
               onChange={handleInputChanges}
             />
+            {erros && <small>{erros.desc}</small>}
           </div>
           <div className="tipo_midia">
             <label htmlFor="digital" className="chklabel">
@@ -233,6 +249,7 @@ const CadastrarFilme = () => {
               />
               Fisíca
             </label>
+            {erros && <small>{erros.midia}</small>}
           </div>
           <div className="btnWrapper">
             <button type="submit">Cadastrar</button>

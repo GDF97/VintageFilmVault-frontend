@@ -47,7 +47,7 @@ const Sidebar = () => {
             Consultar Clientes
           </button>
           <button
-            value={"/dashboard/cadastrar-filme"}
+            value={"/dashboard/consultar-clientes-pendentes"}
             onClick={(e) => handlePages(e.currentTarget.value)}
           >
             Aprovar Clientes

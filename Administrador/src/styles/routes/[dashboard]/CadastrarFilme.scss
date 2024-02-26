@@ -16,6 +16,13 @@
       height: 475px;
       border: 2px solid $brown_color;
       background-color: #d9d9d9;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
     }
 
     .filme_info {
@@ -100,11 +107,4 @@
       }
     }
   }
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
 }

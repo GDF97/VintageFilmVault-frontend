@@ -28,7 +28,7 @@ const FilmTickets = ({
         <hr />
         <div>
           <p>Tipo de Midia</p>
-          <h3>{tipo_midia}</h3>
+          <h3>{tipo_midia == "Ambos" ? "Digital & Midia" : tipo_midia}</h3>
         </div>
         <hr />
         <div>

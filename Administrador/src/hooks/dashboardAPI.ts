@@ -23,6 +23,16 @@ export const useDashboardAPI = () => {
       const response = await api.get("/selecionar-filmes.php");
       return response.data;
     },
+    consultarFilmesPeloNome: async (nome: string) => {
+      const response = await api.get(
+        `/selecionar-filmes-pelo-nome?nome=${nome}`
+      );
+      return response.data;
+    },
+    consultarFilmesAlugado: async () => {
+      const response = await api.get("/clientes-que-alugaram-filme.php");
+      return response.data;
+    },
     resgatarGeneros: async () => {
       const response = await api.get("/selecionar-categorias.php");
       return response.data;
@@ -33,6 +43,12 @@ export const useDashboardAPI = () => {
     },
     consultarClientesPendentes: async () => {
       const response = await api.get("/selecionar-clientes-pendentes.php");
+      return response.data;
+    },
+    consultarClientesPeloNome: async (nome: string) => {
+      const response = await api.get(
+        `/selecionar-clientes-pelo-nome.php?nome=${nome}`
+      );
       return response.data;
     },
     aprovarOuRecusarClientes: async (id_cliente: number, status: string) => {
@@ -46,6 +62,13 @@ export const useDashboardAPI = () => {
       const response = await api.delete(
         `/deletar-filme.php?id_filme=${id_filme}`
       );
+      return response.data;
+    },
+    devolverFilme: async (id_cliente: number, id_filme_alugado: number) => {
+      const response = await api.post("/devolver-filme.php", {
+        id_filme_alugado,
+        id_cliente,
+      });
       return response.data;
     },
   };

@@ -11,6 +11,7 @@ import { RequireAuth } from "./contexts/Auth/RequireAuth.tsx";
 import ConsultarFilmes from "./routes/[dashboard]/ConsultarFilmes.tsx";
 import ConsultarClientesPendentes from "./routes/[dashboard]/ConsultarClientesPendentes.tsx";
 import ConsultarClientes from "./routes/[dashboard]/ConsultarClientes.tsx";
+import DevolverFilme from "./routes/[dashboard]/DevolverFilme.tsx";
 
 const route = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const route = createBrowserRouter([
       {
         path: "/dashboard/consultar-clientes",
         element: <ConsultarClientes />,
+      },
+      {
+        path: "/dashboard/devolver-filmes",
+        element: <DevolverFilme />,
       },
     ],
   },

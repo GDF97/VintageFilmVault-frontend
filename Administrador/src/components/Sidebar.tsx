@@ -32,7 +32,7 @@ const Sidebar = () => {
             Alugar Filmes
           </button>
           <button
-            value={"/dashboard/cadastrar-filme"}
+            value={"/dashboard/devolver-filmes"}
             onClick={(e) => handlePages(e.currentTarget.value)}
           >
             Devolver Filmes

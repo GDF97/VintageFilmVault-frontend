@@ -27,7 +27,10 @@ export const useDashboardAPI = () => {
       const response = await api.get("/selecionar-categorias.php");
       return response.data;
     },
-    consultarClientes: async () => {},
+    consultarClientes: async () => {
+      const response = await api.get("/selecionar-clientes.php");
+      return response.data;
+    },
     consultarClientesPendentes: async () => {
       const response = await api.get("/selecionar-clientes-pendentes.php");
       return response.data;

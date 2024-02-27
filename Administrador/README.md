@@ -11,6 +11,6 @@ Todo
 - [ ] Devolver Filme
 - [ ] Consultar todos os Clientes
   - [ ] Deletar Cliente
-- [ ] Consultar Clientes Pendentes
-  - [ ] Aprovar Cliente
-  - [ ] Recusar Cliente
+- [x] Consultar Clientes Pendentes
+  - [x] Aprovar Cliente
+  - [x] Recusar Cliente

@@ -41,7 +41,7 @@ const Sidebar = () => {
         <div className="sidebar-buttons-wrapper">
           <p>Clientes</p>
           <button
-            value={"/dashboard/cadastrar-filme"}
+            value={"/dashboard/consultar-clientes"}
             onClick={(e) => handlePages(e.currentTarget.value)}
           >
             Consultar Clientes

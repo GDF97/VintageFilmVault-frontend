@@ -1,20 +1,18 @@
-import TableHeader from "../../components/[waitingClients]/TableHeader";
-import TableRow from "../../components/[waitingClients]/TableRow";
+import TableHeader from "../../components/[allClientes]/TableHeader";
+import TableRow from "../../components/[allClientes]/TableRow";
 import "../../styles/routes/[dashboard]/ConsultarClientesPendentes.scss";
-import "../../styles/components/TableRow.scss";
 import { useDashboardAPI } from "../../hooks/dashboardAPI";
 import { useEffect, useState } from "react";
 import { ClientType } from "../../types/ClientType";
 
-const ConsultarClientesPendentes = () => {
+const ConsultarClientes = () => {
   const api = useDashboardAPI();
 
   const [clientes, setClientes] = useState<Array<ClientType> | null>(null);
 
-  const fecthClientesPendentes = async () => {
+  const fetchClientesAprovados = async () => {
     try {
-      const data = await api.consultarClientesPendentes();
-
+      const data = await api.consultarClientes();
       if (!data.message) {
         setClientes(data);
       } else {
@@ -26,12 +24,8 @@ const ConsultarClientesPendentes = () => {
   };
 
   useEffect(() => {
-    fecthClientesPendentes();
+    fetchClientesAprovados();
   }, []);
-
-  useEffect(() => {
-    fecthClientesPendentes();
-  }, [clientes]);
 
   return (
     <section className="consultar-clientes-section">
@@ -46,4 +40,4 @@ const ConsultarClientesPendentes = () => {
   );
 };
 
-export default ConsultarClientesPendentes;
+export default ConsultarClientes;

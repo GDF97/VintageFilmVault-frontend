@@ -34,12 +34,14 @@ const TableRow = ({
         <button
           value={id_cliente}
           onClick={(e) => aprovarCliente(Number(e.currentTarget.value))}
+          className="aprovar"
         >
           Aprovar
         </button>
         <button
           value={id_cliente}
           onClick={(e) => recusarCliente(Number(e.currentTarget.value))}
+          className="excluir"
         >
           Recusar
         </button>

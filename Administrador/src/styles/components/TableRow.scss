@@ -1,5 +1,5 @@
-@import "../../mixins";
-@import "../../variables";
+@import "../mixins";
+@import "../variables";
 
 .table-row {
   width: 100%;
@@ -26,10 +26,12 @@
         font-size: 18px;
         color: white;
         border: none;
-        background-color: $red_color;
 
-        &:first-child {
-          border-right: 2px solid $brown_color;
+        &.excluir {
+          background-color: $red_color;
+        }
+
+        &.aprovar {
           background-color: $green_color;
         }
       }

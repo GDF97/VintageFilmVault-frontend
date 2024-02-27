@@ -9,7 +9,8 @@ Todo
   - [x] Deletar Filme
 - [ ] Alugar Filme
 - [ ] Devolver Filme
-- [ ] Consultar todos os Clientes
+- [x] Consultar todos os Clientes
+  - [x] Consultar apenas aqueles que alugaram um filme
   - [ ] Deletar Cliente
 - [x] Consultar Clientes Pendentes
   - [x] Aprovar Cliente

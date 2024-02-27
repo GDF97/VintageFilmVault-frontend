@@ -9,6 +9,8 @@ const ConsultarClientes = () => {
   const api = useDashboardAPI();
 
   const [clientes, setClientes] = useState<Array<ClientType> | null>(null);
+  const [filterdClientes, setFilteredClientes] = useState<Array<ClientType>>();
+  const [apenasClientesQueAlugaram, setEsseEstadoTodo] = useState(false);
 
   const fetchClientesAprovados = async () => {
     try {
@@ -23,19 +25,47 @@ const ConsultarClientes = () => {
     }
   };
 
+  const fetchFilteredClientes = () => {
+    const newClientesArray = clientes?.filter(
+      (cliente) => cliente.status_film === "Alugou"
+    );
+    setFilteredClientes(newClientesArray);
+  };
+
   useEffect(() => {
     fetchClientesAprovados();
   }, []);
+
+  useEffect(() => {
+    fetchFilteredClientes();
+  }, [apenasClientesQueAlugaram]);
 
   return (
     <section className="consultar-clientes-section">
       <div className="table-wrapper">
         <TableHeader />
-        {clientes &&
+        {apenasClientesQueAlugaram
+          ? filterdClientes?.map((cliente) => (
+              <TableRow key={cliente.id_cliente} {...cliente} />
+            ))
+          : clientes &&
+            clientes.map((cliente) => (
+              <TableRow key={cliente.id_cliente} {...cliente} />
+            ))}
+        {/* {clientes &&
           clientes.map((cliente) => (
             <TableRow key={cliente.id_cliente} {...cliente} />
-          ))}
+          ))} */}
       </div>
+      <button
+        onClick={() => setEsseEstadoTodo(!apenasClientesQueAlugaram)}
+        className="btnClientesAlugaram"
+      >
+        {" "}
+        {!apenasClientesQueAlugaram
+          ? "Apenas Clientes que alugaram filmes"
+          : "Todos os clientes"}
+      </button>
     </section>
   );
 };

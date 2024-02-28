@@ -10,6 +10,8 @@
   .cadastrar-filme-wrapper {
     width: 100%;
     @include flex(row, center, space-evenly);
+    flex-wrap: wrap;
+    gap: 2.5rem;
 
     .filme_poster {
       width: 375px;

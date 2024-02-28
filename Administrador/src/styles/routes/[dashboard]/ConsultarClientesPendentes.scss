@@ -36,3 +36,19 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 1440px) {
+  .consultar-clientes-section {
+    .table-wrapper {
+      width: 800px;
+    }
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .consultar-clientes-section {
+    .table-wrapper {
+      height: 500px;
+    }
+  }
+}

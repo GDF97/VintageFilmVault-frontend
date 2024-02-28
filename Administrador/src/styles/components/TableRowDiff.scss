@@ -13,6 +13,9 @@
     font-family: $OleoScript;
     text-align: center;
     @include flex(row, center, center);
+    @media screen and (max-width: 1440px) {
+      font-size: 0.75rem;
+    }
 
     &:last-child {
       button {

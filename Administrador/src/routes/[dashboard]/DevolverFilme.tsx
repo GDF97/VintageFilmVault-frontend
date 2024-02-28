@@ -34,10 +34,10 @@ const DevolverFilme = () => {
   return (
     <section className="consultar-clientes-section">
       <div className="table-wrapper">
+        <TableHeader />
         {filmesAlugados ? (
           filmesAlugados.map((filme) => (
             <>
-              <TableHeader />
               <TableRow key={filme.id_filme_alugado} {...filme} />
             </>
           ))

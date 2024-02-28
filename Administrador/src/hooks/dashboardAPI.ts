@@ -71,10 +71,15 @@ export const useDashboardAPI = () => {
       });
       return response.data;
     },
-    alugarFilme: async (id_cliente: number, id_filme: number) => {
+    alugarFilme: async (
+      id_cliente: number,
+      id_filme: number,
+      tipo_midia: string
+    ) => {
       const response = await api.post("/alugar-filme-manualmente.php", {
         id_cliente,
         id_filme,
+        tipo_midia,
       });
       return response.data;
     },

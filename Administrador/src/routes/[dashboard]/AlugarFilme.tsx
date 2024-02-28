@@ -86,6 +86,24 @@ const AlugarFilme = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(filmeSelecionado + " " + clienteSelecionado + " " + tpMidia);
+
+    if (!filmeSelecionado) {
+      return;
+    }
+    if (!clienteSelecionado) {
+      return;
+    }
+    if (!tpMidia) {
+      return;
+    }
+
+    const data = await api.alugarFilme(
+      clienteSelecionado,
+      filmeSelecionado,
+      tpMidia
+    );
+    console.log(data);
   };
 
   useEffect(() => {

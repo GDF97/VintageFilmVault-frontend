@@ -8,7 +8,7 @@ Todo
   - [ ] Alterar Filme
   - [x] Deletar Filme
 - [ ] Alugar Filme
-- [ ] Devolver Filme
+- [x] Devolver Filme
 - [x] Consultar todos os Clientes
   - [x] Consultar apenas aqueles que alugaram um filme
   - [ ] Deletar Cliente

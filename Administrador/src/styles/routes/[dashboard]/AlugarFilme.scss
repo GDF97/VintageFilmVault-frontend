@@ -1,0 +1,90 @@
+@import "../../mixins";
+@import "../../variables";
+
+.alugar-filme {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  @include flex(row, start, center);
+
+  &-form {
+    width: 400px;
+    // outline: 1px solid red;
+    font-family: $OleoScript;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .inputGroup {
+      position: relative;
+      @include flex(column, start, start);
+
+      input {
+        width: 100%;
+        padding: 0.25rem;
+        background-color: white;
+        border: 2px solid $brown_color;
+        outline: none;
+
+        &:focus ~ div {
+          display: flex;
+        }
+      }
+      div {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        border: 2px solid $brown_color;
+        width: 100%;
+        position: absolute;
+        top: 46px;
+        z-index: 1;
+
+        button {
+          padding: 0.5rem;
+          width: 100%;
+          text-align: left;
+          background-color: white;
+          border: none;
+          border-bottom: 2px solid $brown_color;
+          cursor: pointer;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background-color: rgb(214, 214, 214);
+          }
+        }
+
+        &:hover {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .checkbox-wrapper {
+    @include flex(row, center, start);
+    gap: 1rem;
+  }
+
+  .cancelar,
+  .alugar {
+    font-family: $OleoScript;
+    padding: 0.5rem;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+
+  .alugar {
+    background-color: $green_color;
+  }
+
+  .cancelar {
+    background-color: $red_color;
+  }
+}

@@ -25,7 +25,7 @@ export const useDashboardAPI = () => {
     },
     consultarFilmesPeloNome: async (nome: string) => {
       const response = await api.get(
-        `/selecionar-filmes-pelo-nome?nome=${nome}`
+        `/selecionar-filmes-pelo-nome.php?nome=${nome}`
       );
       return response.data;
     },
@@ -68,6 +68,13 @@ export const useDashboardAPI = () => {
       const response = await api.post("/devolver-filme.php", {
         id_filme_alugado,
         id_cliente,
+      });
+      return response.data;
+    },
+    alugarFilme: async (id_cliente: number, id_filme: number) => {
+      const response = await api.post("/alugar-filme-manualmente.php", {
+        id_cliente,
+        id_filme,
       });
       return response.data;
     },

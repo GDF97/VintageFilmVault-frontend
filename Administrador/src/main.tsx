@@ -12,6 +12,7 @@ import ConsultarFilmes from "./routes/[dashboard]/ConsultarFilmes.tsx";
 import ConsultarClientesPendentes from "./routes/[dashboard]/ConsultarClientesPendentes.tsx";
 import ConsultarClientes from "./routes/[dashboard]/ConsultarClientes.tsx";
 import DevolverFilme from "./routes/[dashboard]/DevolverFilme.tsx";
+import AlugarFilme from "./routes/[dashboard]/AlugarFilme.tsx";
 
 const route = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const route = createBrowserRouter([
       {
         path: "/dashboard/devolver-filmes",
         element: <DevolverFilme />,
+      },
+      {
+        path: "/dashboard/alugar-filme",
+        element: <AlugarFilme />,
       },
     ],
   },

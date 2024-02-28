@@ -15,6 +15,7 @@ const DevolverFilme = () => {
       if (!data.message) {
         setFilmesAlugados(data);
       } else {
+        setFilmesAlugados(null);
         console.log(data.message);
       }
     } catch (error) {
@@ -33,10 +34,12 @@ const DevolverFilme = () => {
   return (
     <section className="consultar-clientes-section">
       <div className="table-wrapper">
-        <TableHeader />
         {filmesAlugados ? (
           filmesAlugados.map((filme) => (
-            <TableRow key={filme.id_filme_alugado} {...filme} />
+            <>
+              <TableHeader />
+              <TableRow key={filme.id_filme_alugado} {...filme} />
+            </>
           ))
         ) : (
           <p>Não há filme alugado</p>

@@ -51,6 +51,12 @@ export const useDashboardAPI = () => {
       );
       return response.data;
     },
+    deletarCliente: async (id_cliente: number) => {
+      const response = await api.delete(
+        `/deletar-cliente.php?id_cliente=${id_cliente}`
+      );
+      return response.data;
+    },
     aprovarOuRecusarClientes: async (id_cliente: number, status: string) => {
       const response = await api.patch("/status-cadastro-clientes.php", {
         id_cliente,

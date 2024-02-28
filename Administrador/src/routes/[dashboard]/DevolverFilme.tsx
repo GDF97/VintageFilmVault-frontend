@@ -37,9 +37,7 @@ const DevolverFilme = () => {
         <TableHeader />
         {filmesAlugados ? (
           filmesAlugados.map((filme) => (
-            <>
-              <TableRow key={filme.id_filme_alugado} {...filme} />
-            </>
+            <TableRow key={filme.id_filme_alugado} {...filme} />
           ))
         ) : (
           <p>Não há filme alugado</p>

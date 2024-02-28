@@ -37,6 +37,10 @@ const ConsultarClientes = () => {
   }, []);
 
   useEffect(() => {
+    fetchClientesAprovados();
+  }, [clientes]);
+
+  useEffect(() => {
     fetchFilteredClientes();
   }, [apenasClientesQueAlugaram]);
 
@@ -52,10 +56,6 @@ const ConsultarClientes = () => {
             clientes.map((cliente) => (
               <TableRow key={cliente.id_cliente} {...cliente} />
             ))}
-        {/* {clientes &&
-          clientes.map((cliente) => (
-            <TableRow key={cliente.id_cliente} {...cliente} />
-          ))} */}
       </div>
       <button
         onClick={() => setEsseEstadoTodo(!apenasClientesQueAlugaram)}

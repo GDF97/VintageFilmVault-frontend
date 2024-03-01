@@ -23,6 +23,12 @@ export const useDashboardAPI = () => {
       const response = await api.get("/selecionar-filmes.php");
       return response.data;
     },
+    consultarFilmePorId: async (id_filme: number) => {
+      const response = await api.get(
+        `/selecionar-filme-por-id.php?id_filme=${id_filme}`
+      );
+      return response.data;
+    },
     consultarFilmesPeloNome: async (nome: string) => {
       const response = await api.get(
         `/selecionar-filmes-pelo-nome.php?nome=${nome}`
@@ -87,6 +93,10 @@ export const useDashboardAPI = () => {
         id_filme,
         tipo_midia,
       });
+      return response.data;
+    },
+    editarFilme: async (filme_obj: FilmType) => {
+      const response = await api.put("/editar-filme.php", { filme_obj });
       return response.data;
     },
   };

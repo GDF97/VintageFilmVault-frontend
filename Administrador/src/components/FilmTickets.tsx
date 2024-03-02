@@ -2,13 +2,19 @@ import { FilmType } from "../types/FilmType";
 import "../styles/components/FilmTickets.scss";
 import { useDashboardAPI } from "../hooks/dashboardAPI";
 
+type ISetFilmeToEdit = {
+  fnSetFilmeToEdit: (id: number) => void;
+};
+
 const FilmTickets = ({
   id_filme,
   nm_filme,
   tipo_midia,
   vl_filme,
-}: FilmType) => {
+  fnSetFilmeToEdit,
+}: FilmType & ISetFilmeToEdit) => {
   const api = useDashboardAPI();
+
   const fnDeleteFilm = async (id: number) => {
     try {
       const data = await api.deletarFilmes(id);
@@ -33,11 +39,16 @@ const FilmTickets = ({
         <hr />
         <div>
           <p>Valor</p>
-          <h3>R${vl_filme}</h3>
+          <h3>R${vl_filme?.toFixed(2)}</h3>
         </div>
       </div>
       <div className="filme-buttons">
-        <button value={id_filme ? id_filme : 0}>Editar</button>
+        <button
+          value={id_filme ? id_filme : 0}
+          onClick={(e) => fnSetFilmeToEdit(Number(e.currentTarget.value))}
+        >
+          Editar
+        </button>
         <button
           value={id_filme ? id_filme : 0}
           onClick={(e) => fnDeleteFilm(Number(e.currentTarget.value))}

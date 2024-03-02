@@ -1,24 +1,32 @@
 import { FormEvent, useEffect, useState } from "react";
 import { FilmType } from "../types/FilmType";
 import { useDashboardAPI } from "../hooks/dashboardAPI";
+import "../styles/components/EditFilme.scss";
 
-type ISetModalOpen = {
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+type SetFilmeType = {
+  setUmFilme: React.Dispatch<React.SetStateAction<FilmType | null>>;
+  setFilmeToEdit: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const EditFilm = (
-  { id_apoio }: { id_apoio: number },
-  { setModalOpen }: ISetModalOpen
-) => {
+const EditFilm = ({
+  id_filme,
+  nm_filme,
+  ano_lancamento,
+  vl_filme,
+  tipo_midia,
+  desc_filme,
+  setUmFilme,
+  setFilmeToEdit,
+}: FilmType & SetFilmeType) => {
   const api = useDashboardAPI();
 
   const [filmObj, setFilmObj] = useState<FilmType>({
-    id_filme: 0,
-    nm_filme: "",
-    ano_lancamento: 0,
-    vl_filme: 0,
-    tipo_midia: "",
-    desc_filme: "",
+    id_filme: id_filme,
+    nm_filme: nm_filme,
+    ano_lancamento: ano_lancamento,
+    vl_filme: vl_filme,
+    tipo_midia: tipo_midia,
+    desc_filme: desc_filme,
   });
 
   const handleInput = (
@@ -31,33 +39,27 @@ const EditFilm = (
     }));
   };
 
-  const editarFilme = async (filmObj: FilmType, e: FormEvent) => {
+  const editarFilme = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(filmObj);
     try {
       const data = await api.editarFilme(filmObj);
       console.log(data.message);
-      setModalOpen(false);
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const consultarFilmePorId = async (id_filme: number) => {
-    try {
-      const data = await api.consultarFilmePorId(id_filme);
-      setFilmObj(data);
-    } catch (error) {
-      console.error(error);
+    } finally {
+      setUmFilme(null);
+      setFilmeToEdit(0);
     }
   };
 
   useEffect(() => {
-    consultarFilmePorId(id_apoio);
+    console.log(desc_filme);
   }, []);
 
   return (
-    <div>
-      <form className="formEditar" onSubmit={(e) => editarFilme(filmObj, e)}>
+    <div className="editFilm">
+      <form className="formEditar" onSubmit={editarFilme}>
         <input
           type="text"
           name="nm_filme"
@@ -88,7 +90,13 @@ const EditFilm = (
           onChange={(e) => handleInput(e)}
         />
         <button type="submit">Editar Filme</button>
-        <button type="reset" onClick={() => setModalOpen(false)}>
+        <button
+          type="reset"
+          onClick={() => {
+            setUmFilme(null);
+            setFilmeToEdit(0);
+          }}
+        >
           Cancelar
         </button>
       </form>

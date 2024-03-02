@@ -95,7 +95,7 @@ const CadastrarFilme = () => {
     setTpMidia(newMidiaArr[0]);
   };
 
-  const handleInputChanges = async (
+  const handleInputChanges = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;

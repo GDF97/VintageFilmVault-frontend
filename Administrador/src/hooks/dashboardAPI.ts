@@ -27,7 +27,8 @@ export const useDashboardAPI = () => {
       const response = await api.get(
         `/selecionar-filme-por-id.php?id_filme=${id_filme}`
       );
-      return response.data;
+      console.log(response.data);
+      return response.data[0];
     },
     consultarFilmesPeloNome: async (nome: string) => {
       const response = await api.get(
@@ -95,8 +96,8 @@ export const useDashboardAPI = () => {
       });
       return response.data;
     },
-    editarFilme: async (filme_obj: FilmType) => {
-      const response = await api.put("/editar-filme.php", { filme_obj });
+    editarFilme: async (film_obj: FilmType) => {
+      const response = await api.post("/editar-filme.php", { film_obj });
       return response.data;
     },
   };

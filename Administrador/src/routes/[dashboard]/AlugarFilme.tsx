@@ -103,7 +103,11 @@ const AlugarFilme = () => {
       filmeSelecionado,
       tpMidia
     );
-    console.log(data);
+    setClienteSelecionado(0);
+    setFilmeSelecionado(0);
+    setTpMidia("");
+    setNomeFilme("");
+    setNomeCliente("");
   };
 
   useEffect(() => {

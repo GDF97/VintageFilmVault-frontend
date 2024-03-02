@@ -14,7 +14,6 @@ const EditFilm = ({
   ano_lancamento,
   vl_filme,
   tipo_midia,
-  desc_filme,
   setUmFilme,
   setFilmeToEdit,
 }: FilmType & SetFilmeType) => {
@@ -26,7 +25,6 @@ const EditFilm = ({
     ano_lancamento: ano_lancamento,
     vl_filme: vl_filme,
     tipo_midia: tipo_midia,
-    desc_filme: desc_filme,
   });
 
   const handleInput = (
@@ -53,10 +51,6 @@ const EditFilm = ({
     }
   };
 
-  useEffect(() => {
-    console.log(desc_filme);
-  }, []);
-
   return (
     <div className="editFilm">
       <form className="formEditar" onSubmit={editarFilme}>
@@ -82,11 +76,6 @@ const EditFilm = ({
           type="text"
           name="tipo_midia"
           value={filmObj.tipo_midia}
-          onChange={(e) => handleInput(e)}
-        />
-        <textarea
-          name="desc_filme"
-          value={filmObj.desc_filme}
           onChange={(e) => handleInput(e)}
         />
         <button type="submit">Editar Filme</button>

@@ -1,0 +1,15 @@
+:root {
+  --bg-color: #fcf5ed;
+  --red-color: #ce5a67;
+  --green-color: #43766c;
+  --brown-color: #1f1717;
+  --yellow-color: #b19470;
+  --primary-font: "Oleo Script", system-ui;
+  --secondary-font: "Oleo Script Swash Caps", system-ui;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

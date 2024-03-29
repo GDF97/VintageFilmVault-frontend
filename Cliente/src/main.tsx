@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./routes/Home.tsx";
 import AllFilms from "./routes/AllFilms.tsx";
 import FilmDetails from "./routes/FilmDetails.tsx";
+import Login from "./routes/Login.tsx";
+import Register from "./routes/Register.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         element: <FilmDetails />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 

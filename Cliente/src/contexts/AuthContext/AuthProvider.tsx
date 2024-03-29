@@ -12,14 +12,29 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return true;
   };
 
-  const logIn = async (login: string, password: string) => {
-    return true;
+  const loginCliente = async (email: string, senha: string) => {
+    const data = await api.clientLogin(email, senha);
+    if (data.status == "success") {
+      const clientObj: ClientType = {
+        id_cliente: data.cliente.codigo,
+        nm_cliente: data.nome,
+        nm_email: data.email,
+      };
+      setClient(clientObj);
+      localStorage.setItem("id_cliente", data.cliente.codigo);
+      return true;
+    }
+    return false;
   };
 
-  const logOut = () => {};
+  const logOut = () => {
+    localStorage.clear();
+  };
 
   return (
-    <AuthContext.Provider value={{ client, logIn, logOut, validateClient }}>
+    <AuthContext.Provider
+      value={{ client, loginCliente, logOut, validateClient }}
+    >
       {children}
     </AuthContext.Provider>
   );

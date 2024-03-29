@@ -12,8 +12,10 @@ const Navbar = () => {
         <Links>Filmes Antigos</Links>
       </Wrapper>
       <Wrapper>
-        <Button>Login</Button>
-        <Button color="red">Cadastrar</Button>
+        <Button onClick={() => navigate("/login")}>Login</Button>
+        <Button color="red" onClick={() => navigate("/register")}>
+          Cadastrar
+        </Button>
       </Wrapper>
     </Header>
   );

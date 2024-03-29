@@ -3,7 +3,7 @@ import { ClientType } from "../../types/ClientType";
 
 export type AuthContextType = {
   client: ClientType | null;
-  logIn: (login: string, password: string) => Promise<boolean>;
+  loginCliente: (email: string, senha: string) => Promise<boolean>;
   logOut: () => void;
   validateClient: (id_client: number, cd_client: number) => Promise<boolean>;
 };

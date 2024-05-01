@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Container } from "../styles/AllFilms.style.";
-import { FormEvent, useContext, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import { FormEvent, useState } from "react";
 import { clientAPI } from "../hooks/clientAPI";
 import { useNavigate } from "react-router-dom";
 import Notification from "../components/Notification";
 import { ClientType } from "../types/ClientType";
+import { validateInfos } from "../utils/validateRegister";
 
 const Title = styled.h1`
   font-size: 4rem;
@@ -57,15 +57,14 @@ const SecondaryButton = styled(Button)`
     border-bottom: 2px solid var(--brown-color);
   }
 `;
+
+const SmallTag = styled.small`
+  color: red;
+`;
+
 const Register = () => {
   const navigate = useNavigate();
-
-  const initialState: ClientType = {
-    nm_cliente: "",
-    cd_senha: "",
-    nm_email: "",
-    nm_endereco: "",
-  };
+  const useClientApi = clientAPI();
 
   const [clientInfos, setClientInfos] = useState<ClientType | null>({
     nm_cliente: "",
@@ -73,8 +72,11 @@ const Register = () => {
     nm_email: "",
     nm_endereco: "",
   });
+
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<ClientType | null>(null);
+
   const [not, setNot] = useState(false);
 
   const handleInputChanges = (
@@ -87,28 +89,87 @@ const Register = () => {
     }));
   };
 
+  const clientRegister = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const dataClient: ClientType = {
+      nm_cliente: clientInfos?.nm_cliente,
+      cd_senha: clientInfos?.cd_senha,
+      nm_email: clientInfos?.nm_email,
+      nm_endereco: clientInfos?.nm_endereco,
+    };
+
+    const validateErrors = validateInfos(dataClient);
+
+    if (Object.keys(validateErrors).length > 0) {
+      setErrors(validateErrors);
+      return;
+    }
+
+    try {
+      const data = await useClientApi.clientRegister(dataClient);
+      console.log(data);
+      if (data.status === "success") {
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+      setNot(true);
+      setMessage(data.message);
+      setStatus(data.status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
       {not && (
         <Notification status={status} message={message} setNot={setNot} />
       )}
       <Title>VintageFilmVault</Title>
-      <Form onSubmit={() => console.log("teste")}>
+      <Form onSubmit={clientRegister}>
         <InputGroup>
           <Label>Nome *</Label>
-          <Input type="text" autoComplete="off" onChange={handleInputChanges} />
+          <Input
+            type="text"
+            autoComplete="off"
+            value={clientInfos?.nm_cliente}
+            onChange={handleInputChanges}
+            name="nm_cliente"
+          />
+          {errors?.nm_cliente && <SmallTag>{errors.nm_cliente}</SmallTag>}
         </InputGroup>
         <InputGroup>
           <Label>Email *</Label>
-          <Input type="text" autoComplete="off" onChange={handleInputChanges} />
+          <Input
+            type="text"
+            autoComplete="off"
+            value={clientInfos?.nm_email}
+            onChange={handleInputChanges}
+            name="nm_email"
+          />
+          {errors?.nm_email && <SmallTag>{errors.nm_email}</SmallTag>}
         </InputGroup>
         <InputGroup>
           <Label>Senha *</Label>
-          <Input type="text" onChange={handleInputChanges} />
+          <Input
+            type="text"
+            onChange={handleInputChanges}
+            value={clientInfos?.cd_senha}
+            name="cd_senha"
+          />
+          {errors?.cd_senha && <SmallTag>{errors.cd_senha}</SmallTag>}
         </InputGroup>
         <InputGroup>
           <Label>Endereço *</Label>
-          <Input type="text" onChange={handleInputChanges} />
+          <Input
+            type="text"
+            value={clientInfos?.nm_endereco}
+            onChange={handleInputChanges}
+            name="nm_endereco"
+          />
+          {errors?.nm_endereco && <SmallTag>{errors.nm_endereco}</SmallTag>}
         </InputGroup>
         <PrimaryButton type="submit">Cadastrar</PrimaryButton>
         <SecondaryButton onClick={() => navigate("/login")}>

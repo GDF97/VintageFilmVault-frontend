@@ -59,7 +59,7 @@ const SecondaryButton = styled(Button)`
 
 const Login = () => {
   const navigate = useNavigate();
-  const api = clientAPI();
+
   const auth = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
@@ -70,20 +70,20 @@ const Login = () => {
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    const data = await api.clientLogin(email, senha);
-
-    if (data.status === "success") {
-      localStorage.setItem("id_cliente", data.cliente.codigo);
-      setTimeout(() => {
-        navigate("/all-films");
-      }, 5000);
-      console.log(data.status);
-    } else {
-      console.log(data.status);
+    try {
+      const { isAuth, message, status } = await auth.loginCliente(email, senha);
+      console.log(isAuth);
+      if (isAuth) {
+        setTimeout(() => {
+          navigate("/all-films");
+        }, 2000);
+      }
+      setNot(true);
+      setMessage(message);
+      setStatus(status);
+    } catch (error) {
+      console.log(error);
     }
-    setNot(true);
-    setMessage(data.message);
-    setStatus(data.status);
   };
 
   return (

@@ -68,7 +68,7 @@ const AllFilms = () => {
 
   return (
     <Container>
-      <Title>Todos os Filmes</Title>
+      <Title>{category != "" ? `Filmes ${category}` : "Todos os Filmes"}</Title>
       <OtherWrapper>
         <SearchInput
           type="text"
@@ -78,7 +78,7 @@ const AllFilms = () => {
       </OtherWrapper>
       <FilmGrid>
         {loading ? (
-          <p> Carregando </p>
+          <p> Carregando... </p>
         ) : (
           <>
             {allFilms &&

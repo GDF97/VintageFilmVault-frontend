@@ -8,23 +8,20 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   const [client, setClient] = useState<ClientType | null>(null);
 
-  const validateClient = async (id_client: number, cd_client: number) => {
-    return true;
-  };
-
   const loginCliente = async (email: string, senha: string) => {
     const data = await api.clientLogin(email, senha);
     if (data.status == "success") {
       const clientObj: ClientType = {
         id_cliente: data.cliente.codigo,
-        nm_cliente: data.nome,
-        nm_email: data.email,
+        nm_cliente: data.cliente.nome,
+        nm_email: data.cliente.email,
       };
-      setClient(clientObj);
+      localStorage.setItem("cliente", JSON.stringify(clientObj));
       localStorage.setItem("id_cliente", data.cliente.codigo);
-      return true;
+
+      return { isAuth: true, status: data.status, message: data.message };
     }
-    return false;
+    return { isAuth: false, status: data.status, message: data.message };
   };
 
   const logOut = () => {
@@ -32,9 +29,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ client, loginCliente, logOut, validateClient }}
-    >
+    <AuthContext.Provider value={{ client, loginCliente, logOut }}>
       {children}
     </AuthContext.Provider>
   );

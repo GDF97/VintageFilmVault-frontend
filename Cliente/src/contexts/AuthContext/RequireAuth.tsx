@@ -1,8 +1,10 @@
+import { Navigate } from "react-router-dom";
+
 export const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const client = localStorage.getItem("id_cliente");
+  const client = localStorage.getItem("cliente");
 
   if (!client) {
-    return;
+    return <Navigate to={"/"} />;
   }
 
   return children;

@@ -8,6 +8,10 @@ import AllFilms from "./routes/AllFilms.tsx";
 import FilmDetails from "./routes/FilmDetails.tsx";
 import Login from "./routes/Login.tsx";
 import Register from "./routes/Register.tsx";
+import { RequireAuth } from "./contexts/AuthContext/RequireAuth.tsx";
+import CartDetails from "./routes/CartDetails.tsx";
+import { AuthProvider } from "./contexts/AuthContext/AuthProvider.tsx";
+import { CartProvider } from "./contexts/CartContext/CartProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,14 @@ const router = createBrowserRouter([
         path: "/film-details/:id",
         element: <FilmDetails />,
       },
+      {
+        path: "/cart-details",
+        element: (
+          <RequireAuth>
+            <CartDetails />
+          </RequireAuth>
+        ),
+      },
     ],
   },
   {
@@ -40,6 +52,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
